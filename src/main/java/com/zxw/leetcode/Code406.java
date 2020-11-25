@@ -1,7 +1,9 @@
 package main.java.com.zxw.leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * ClassName: Code406
@@ -68,6 +70,13 @@ public class Code406 {
     public static void main(String[] args) {
         int[][] people = new int[][]{{7,0}, {4,4}, {7,1}, {5,0}, {6,1}, {5,2}};
         int[][] ints = reconstructQueue(people);
+
+        List<Integer> queue = new ArrayList<>();
+        //该方法实现插入功能。
+        queue.add(0,0);
+        queue.add(1,2);
+        queue.add(0,3);
+        queue.add(2,5);
 
         System.out.println(reconstructQueue(people));
     }
