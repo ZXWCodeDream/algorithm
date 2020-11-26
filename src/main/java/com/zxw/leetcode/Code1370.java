@@ -1,6 +1,5 @@
 package main.java.com.zxw.leetcode;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -92,6 +91,11 @@ public class Code1370 {
             }
         }
         return sb.toString();
+    }
+
+    //Todo 借助长度为26的数组计算
+    public static String sortString2(String s){
+        return "";
     }
 
     public static void main(String[] args) {
