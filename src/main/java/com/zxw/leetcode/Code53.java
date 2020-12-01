@@ -95,6 +95,7 @@ public class Code53 {
      * 很明显 f(i) = max(f(i-1)+nums[i],nums[i]) 要么加前面的值，要么使用当前元素，动态规划转移方程因此得出
      * 因此可以使用一维dp存储值，最终求出dp数组中的最大值
      * 不过我们根据动态规划转移方程可知，每次影响的值都只跟前一个值有关，所以我们可以使用临时变量pre保存
+     * 其实就是贪心算法，当前值和之前和比较，并存放最大值
      * @param nums
      * @return
      */
@@ -104,13 +105,15 @@ public class Code53 {
         }
         int pre = 0,maxSum = nums[0];
         for (int i = 1; i < nums.length; i++){
-            // pre值表示以nums[i]为结尾的【连续子数组】最大和
+            // pre值表示以nums[i]为结尾的【连续子数组】最大和bb
             pre = Math.max(pre+nums[i],nums[i]);
             maxSum = Math.max(maxSum,pre);
         }
         return maxSum;
 
     }
+
+    //todo 分治算法求解待补充
 
 
         public static void main(String[] args) {
