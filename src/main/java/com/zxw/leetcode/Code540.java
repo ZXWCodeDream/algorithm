@@ -63,11 +63,7 @@ public class Code540 {
         return nums[l];
     }
 
-    public static void main(String[] args) {
 
-        int[] nums = new int[]{1,1,2,2,3};
-        System.out.println(singleNonDuplicate(nums));
-    }
 
 
 }
