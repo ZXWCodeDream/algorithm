@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * ClassName: Code752
+ * ClassName: Codle752
  * Description:
  *
  *
@@ -60,6 +60,23 @@ import java.util.Queue;
  */
 public class Code752 {
 
+    /**
+     * BFS，将0000放入队列中，将旋转一次波轮的所有锁值放入队列中，依次寻找遍历。
+     *
+     * 可以使用Set<String> 标识已经走过的密码
+     *
+     * 每次旋转一次波轮可能的情况可以通过for循环实现
+     *
+     * for (int i = 0; i < 4; i++){ //代表四个波轮转盘
+     *
+     * ​	for (int j = -1; j <= 1; j+=2){ //代表每次只能+1或者-1
+     * ​	}
+     *
+     * }
+     * @param deadends
+     * @param target
+     * @return
+     */
     public static int openLock(String[] deadends, String target) {
 
         if (target.equals("0000")){
@@ -89,7 +106,6 @@ public class Code752 {
 
             step++;
             int size = queue.size();
-
             for (int ii = 0; ii < size; ii++) {
                 if (queue.size() == 0){
                     System.out.println("test");
