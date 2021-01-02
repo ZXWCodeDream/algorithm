@@ -33,6 +33,11 @@ package main.java.com.zxw.leetcode;
  */
 public class Code70 {
 
+    /**
+     * 状态转移方程： f(n) = f(n-1)+f(n-2)
+     * @param n
+     * @return
+     */
     public int climbStairs(int n) {
 
         if (n == 1 || n == 2){return n;}
