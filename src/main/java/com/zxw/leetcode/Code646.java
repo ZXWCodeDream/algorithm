@@ -1,8 +1,6 @@
 package main.java.com.zxw.leetcode;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * ClassName: Code646
