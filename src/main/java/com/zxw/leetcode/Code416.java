@@ -35,6 +35,28 @@ package main.java.com.zxw.leetcode;
 public class Code416 {
 
 
+    /**
+     * 本质其实就是0-1背包问题。题目求的是等和子集，其实就是判断数组中是否能组成和为Sum/2的序列。Sum为整个数组所有数字的和。
+     *
+     * 现在就是转为0-1背包问题，有n个数字，容量为Sum/2,挑选其中几个数字，看能否组成Sum/2。
+     *
+     * 三步走：
+     *
+     * 状态：
+     *   可选择列表和容量，选择：选择这个数和不选择这个数
+     *
+     * dp数组含义：
+     *  dp[i][j]表示数组前i个数，容量为j时，能否组成和为j的数。dp\[i][j] = true表示前i个数可以组成和为j的序列。
+     *  basecase: dp\[i][0]= true。对于要求组成和为0，都为true，我都不选择即可。
+     *
+     * 根据选择做状态转移逻辑：
+     *  该数值大于要求的目标和，则不选择该数，即dp\[i][j] = dp\[i-1][j]。
+     *  该数组小于等于要求的目标和，则可以选择该数 dp\[i][j] = dp\[i-1][j-nums[i]],判断结果为前i-1个数，容量为j-nums[i]是否能组成j-nums[i]的序列。
+     *  若不选择该数，则为dp\[i][j] = dp\[i-1][j]。
+     *  最终结果 dp\[i][j] = dp\[i-1][j-nums[i]] || dp\[i-1][j] 。
+     * @param nums
+     * @return
+     */
     public boolean canPartition(int[] nums) {
 
         if (nums == null || nums.length == 0){
@@ -63,6 +85,45 @@ public class Code416 {
             }
         }
         return dp[n][sum/2];
+
+    }
+
+
+    /**
+     * 状态压缩
+     * 二维数组转一维数组
+     * 由上述代码可知，对于dp的值都只跟前一个值有关，即dp[i][j]只跟dp[i-1][j]有关，即只跟前一个有关系，那么我们就可以进行状态压缩，将二维数组改为一维数组
+     * 代码逻辑不变， dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]]; 改为dp[j] = dp[j] || dp[j-nums[i-1]]。
+     * dp[j] = dp[j]。 等号左边dp[j]表示对于当前i个数，容量为j是否能组成目标和，等号右边dp[j]其实已经计算过了，即表示对于当前i-1个数，容量为j是否能组成目标和
+     * @param nums
+     * @return
+     */
+    public boolean canPartition2(int[] nums) {
+
+        if (nums == null || nums.length == 0){
+            return false;
+        }
+        int n = nums.length;
+        int sum = 0;
+        for (int i = 0; i < n; i++){
+            sum += nums[i];
+        }
+        if (sum % 2 != 0){
+            return false;
+        }
+        boolean[] dp = new boolean[sum/2+1];
+        dp[0] = true;
+        for (int i = 1; i <= n; i++){
+            for (int j = sum/2; j >= 1; j--){
+                if (j < nums[i-1]){ //背包容量不足以装入该数时，
+                    dp[j] = dp[j];
+                }else{
+                    // 装入或者不装入
+                    dp[j] = dp[j] || dp[j-nums[i-1]];
+                }
+            }
+        }
+        return dp[sum/2];
 
     }
 }
