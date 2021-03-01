@@ -79,6 +79,29 @@ public class Code413 {
         return sum;
     }
 
+    /**
+     * 基于以上dp进行优化
+     * 优化方案：状态压缩
+     * 根据动态转移方程可知当前值只与前一个值有关，所以只需要一个变量记录前一个值即可
+     * @param A
+     * @return
+     */
+    public static int numberOfArithmeticSlicesOptimazaion(int[] A){
+
+        int dp = 0;
+        int sum = 0;
+        for (int i = 2; i < A.length; i++){
+            if (A[i] - A[i-1] == A[i-1] - A[i-2]){
+               dp++;
+               sum += dp;
+            }else{
+                dp = 0;
+            }
+
+        }
+        return sum;
+    }
+
     public static boolean isSameDif(int a,int b,int c){
         if (b-a == c-b){
             return true;
@@ -91,5 +114,6 @@ public class Code413 {
 
         int[] arr = new int[]{1, 2, 3, 4};
         System.out.println(numberOfArithmeticSlices(arr));
+        System.out.println(numberOfArithmeticSlicesOptimazaion(arr));
     }
 }
