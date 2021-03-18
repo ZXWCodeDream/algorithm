@@ -23,7 +23,7 @@ public class SelectSort {
             arr[minIndex] = arr[i];
             arr[i] = tmp;
             /**
-             * 不可使用异或位运算做两两交换，因为对于两个值相同的进行交换，两个值都会变为0
+             * 不可使用异或位运算做两两交换，就对于同一个值进行交换，该值会变为0
              */
 //            arr[minIndex] ^= arr[i];  //arr[minIndex] = arr[minIndex] ^ arr[i]
 //            arr[i] ^= arr[minIndex];  //arr[i] = arr[i] ^ arr[minIndex] ^ arr[i]=arr[minIndex]
@@ -32,10 +32,18 @@ public class SelectSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{3,23,1,2};
-        selectSort(arr);
-        for (int num : arr){
-            System.out.println(num);
-        }
+//        int[] arr = new int[]{3,23,1,2};
+//        selectSort(arr);
+//        for (int num : arr){
+//            System.out.println(num);
+//        }
+        int a = 1;
+        a ^= a;  // a = a ^ b = 0
+        a ^= a; // b = a=b^0 = b
+        a ^= a;
+        System.out.println(a);
+//        System.out.println(b);
+
+
     }
 }
