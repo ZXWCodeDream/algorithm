@@ -1,5 +1,7 @@
 package main.java.com.zxw.leetcode;
 
+import main.java.com.zxw.common.Util;
+
 /**
  * ClassName: Code283
  * Description:
@@ -26,6 +28,31 @@ package main.java.com.zxw.leetcode;
  */
 public class Code283 {
 
+    public static void move(int[] nums){
+
+        // 写指针
+        int i = 0;
+        //读指针
+        for (int j = 0; j < nums.length; j++){
+            //读指针一直往后移，直到遇到非0数值，将其与写指针所在位置交换
+            if (nums[j] != 0){
+                int tmp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = tmp;
+                //写指针后移一位
+                i++;
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums = new int[]{1,0,1,2,0,1,0};
+        move(nums);
+        Util.print(nums);
+    }
+
     /**
      * 思路：
      * 定义i为实时最前面值为0的下标
@@ -36,6 +63,7 @@ public class Code283 {
     public void moveZeroes(int[] nums) {
 
         for (int i = 0,j=0; j < nums.length;){
+            //当i和j指针指向同一个元素，且值都为0时
             if (nums[j] == 0 && i == j){
                 i = j;j++;
             }else if (nums[j] == 0 && i != j){
