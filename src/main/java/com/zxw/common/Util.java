@@ -1,5 +1,8 @@
 package main.java.com.zxw.common;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * ClassName: Util
  * Description:
@@ -14,6 +17,13 @@ public class Util {
 
         for (Object obj : arr){
             System.out.println(obj);
+        }
+    }
+
+    public static <E> void print(Collection<E> collection){
+
+        for (E c : collection){
+            System.out.println(c);
         }
     }
 
